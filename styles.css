@@ -1,0 +1,399 @@
+/* --- Global Styles & Color Scheme --- */
+:root {
+    --primary-color: #f7a4d4; 
+    --text-color: #5b286b; 
+    --accent-color: #b1a7d6; 
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); 
+    background-attachment: fixed;
+    /* PADDING adjusted for fixed playlist bar */
+    padding-bottom: 40px; 
+}
+
+/* --- Header & Titles --- */
+header {
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+    background-color: white;
+    margin: 20px auto 30px auto;
+    max-width: 1000px;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+}
+.main-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
+    color: var(--text-color);
+    text-shadow: 2px 2px 5px rgba(247, 164, 212, 0.7);
+    margin-bottom: 10px;
+}
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+.section-title {
+    max-width: 1000px;
+    margin: 30px auto 15px auto;
+    padding-left: 20px;
+    font-size: 1.8rem;
+    color: white;
+    text-shadow: 1px 1px 3px var(--text-color);
+    border-bottom: 3px solid white;
+    width: fit-content;
+}
+
+/* --- Scrolling Container Styles --- */
+.scroll-container {
+    padding: 40px 0;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-left: 5vw; 
+    padding-right: 5vw;
+    scroll-behavior: smooth; 
+    /* Aesthetic Scrollbar Styles */
+    scrollbar-color: var(--primary-color) rgba(255, 255, 255, 0.5);
+    scrollbar-width: thin; 
+}
+.scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+.scroll-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+/* --- Gallery Layout (Flex container for horizontal scroll) --- */
+.gallery {
+    display: flex;
+    gap: 30px; 
+    padding-bottom: 20px;
+}
+
+/* --- Base Memory Card Styling (RESPONSIVE WIDTH) --- */
+.memory-card {
+    position: relative; 
+    /* MOBILE: Take up most of the viewport width for better visibility */
+    flex: 0 0 calc(90vw - 40px); 
+    max-width: 320px; /* Limit maximum size on desktop */
+    height: 550px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+}
+
+/* Desktop-specific card size (Min width 768px) */
+@media (min-width: 768px) {
+    .memory-card {
+        flex: 0 0 320px; /* Fixed width on desktop */
+    }
+}
+
+/* --- FADE EFFECT STYLES (UNCHANGED) --- */
+.memory-card {
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.memory-card.hidden {
+    opacity: 0;
+    transform: translateY(20px); 
+}
+.memory-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* --- END FADE EFFECT STYLES --- */
+
+/* --- Image & Video Layout --- */
+.memory-card img,
+.memory-card iframe,
+.memory-card video { 
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    display: block;
+    border-bottom: 5px solid var(--primary-color);
+}
+
+.memory-card img:hover {
+    transform: scale(1.05);
+    filter: brightness(0.95);
+    transition: transform 0.5s ease;
+}
+
+/* Video Card Styling (RESPONSIVE WIDTH) */
+.video-card {
+    /* Larger responsive width for video cards */
+    flex: 0 0 calc(90vw - 40px); 
+    max-width: 450px;
+    height: 400px;
+}
+@media (min-width: 768px) {
+    .video-card {
+        flex: 0 0 450px; /* Fixed width on desktop */
+    }
+}
+
+.video-card iframe {
+    height: 70%; 
+}
+
+/* Video Placeholder Styles (For the thumbnail/play button setup) */
+.video-placeholder {
+    position: relative;
+    width: 100%;
+    height: 60%;
+    cursor: pointer;
+}
+.video-placeholder img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    border-bottom: 5px solid var(--primary-color);
+}
+.video-placeholder .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    padding: 15px 20px 15px 25px;
+    border: 3px solid white;
+    transition: all 0.3s;
+}
+.video-placeholder:hover .play-button {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* --- Text Content & Final Card --- */
+.text-content { padding: 20px; flex-grow: 1; }
+.text-content h2 { color: var(--text-color); font-size: 1.5rem; margin-bottom: 8px; }
+.date { display: block; font-size: 0.85rem; color: var(--text-color); font-weight: 600; background-color: var(--accent-color); padding: 5px 10px; border-radius: 5px; width: fit-content; }
+.final-card { background-color: var(--primary-color); color: white; text-align: center; justify-content: center; }
+.final-card h2 { color: var(--text-color); font-family: 'Pacifico', cursive; }
+.final-card .date { background-color: white; color: var(--primary-color); margin: 15px auto 0 auto; }
+footer { text-align: center; padding: 30px 20px; margin-top: 20px; font-size: 1rem; color: white; font-weight: 600; text-shadow: 1px 1px 2px var(--text-color); }
+
+
+/* ================================================================= */
+/* --- PLAYLIST BAR STYLES (RESPONSIVE RETRO BAR) --- */
+/* ================================================================= */
+
+#playlist-bar {
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px; 
+    
+    /* Retro Visuals */
+    background-color: #e6e6e6; 
+    border-top: 2px solid black; 
+    border-bottom: 1px solid black;
+    font-family: monospace; 
+    font-size: 0.8rem;
+    padding: 0 10px; 
+    z-index: 999; 
+    user-select: none; 
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+/* Ensure all bar elements are vertically centered */
+#playlist-bar > div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* --- Controls Group (Left) --- */
+.controls-left {
+    /* FIXED: Using a unit for gap and making it more spacious */
+    gap: 8px; 
+}
+
+.control-btn {
+    background-color: #ccc;
+    border: 1px solid black;
+    color: black;
+    /* Reduced padding for better flow, especially on small screens */
+    padding: 2px 10px; 
+    cursor: pointer;
+    line-height: 1; 
+    font-size: 0.8rem;
+    height: 20px;
+    /* margin removed as gap handles spacing */
+}
+
+.control-btn:hover {
+    background-color: #aaa;
+}
+.control-btn:active {
+    background-color: #888;
+}
+
+/* --- Track Info Display (Time/Track Number) --- */
+.track-info {
+    border-left: 1px solid black; 
+    padding: 0 15px; /* Slightly reduced desktop padding */
+    white-space: nowrap;
+    height: 100%;
+}
+
+.separator {
+    margin: 0 4px; 
+    font-weight: bold;
+}
+
+/* --- Track Title Marquee Area (Center) --- */
+.track-title-container {
+    flex-grow: 1; 
+    overflow: hidden; 
+    padding-left: 10px;
+    height: 100%;
+    border-right: 1px solid black; 
+}
+
+.track-title {
+    font-weight: bold;
+    white-space: nowrap; 
+}
+
+/* --- Volume Controls (Far Right) --- */
+.volume-controls {
+    padding: 0 15px; /* Slightly reduced desktop padding */
+    gap: 10px; /* Reduced gap */
+    height: 100%;
+}
+
+.volume-label {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+#volume-slider {
+    width: 150px; 
+    height: 10px; 
+    -webkit-appearance: none; 
+    appearance: none; 
+    background: #bbb; 
+    border: 2px solid black;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style the slider thumb (unchanged) */
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px; 
+    height: 10px;
+    background: #000;
+    cursor: pointer;
+    border: 1px solid #fff; 
+}
+#volume-slider::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    background: #000;
+    cursor: pointer;
+    border: 1px solid #fff;
+}
+
+/* --- MEDIA QUERIES FOR MOBILE OPTIMIZATION --- */
+
+@media (max-width: 600px) {
+    
+    /* Shrink the main title */
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    /* Playlist Bar Adjustments */
+    #playlist-bar {
+        padding: 0 5px; /* Tighter padding on the bar edges */
+    }
+
+    /* Track Info (Hide track count/duration, keep current time) */
+    .track-info {
+        display: none; /* Hide the whole block */
+    }
+    
+    /* Volume Controls (Hide slider) */
+    .volume-controls {
+        padding: 0 5px;
+        gap: 5px;
+    }
+    #volume-slider {
+        display: none;
+    }
+
+    /* Re-route separation border and use track title container for time status */
+    .track-title-container {
+        border-left: 1px solid black; /* Move the border here since track-info is gone */
+        padding-left: 10px;
+        border-right: none; 
+    }
+}
+
+
+
+/* --- Video Card Hover Effect (styles.css) --- */
+
+/* Style for the video player inside the card to ensure full coverage and object-fit */
+.video-card .local-video-player {
+    width: 100%;
+    height: 100%; /* Should be 100% of the container height (minus the text-content) */
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effect on the entire card */
+.video-card:hover .local-video-player {
+    /* Slight zoom on hover */
+    transform: scale(1.03); 
+    /* Subtle lift effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Ensure the parent memory-card allows for the transform effect without clipping */
+.memory-card {
+    /* ... existing memory-card styles ... */
+    overflow: hidden; /* Prevent scaling from affecting neighbors */
+}
+
+/* Adjust the styling in the video-card (if needed) to ensure the video takes up the desired space */
+.video-card {
+    display: flex;
+    flex-direction: column;
+    /* You might need to adjust the flex basis or height properties in video-card 
+       and text-content to ensure the video scales correctly without pushing content out. */
+}
