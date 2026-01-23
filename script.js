@@ -6,27 +6,27 @@ const playlist = [
     { 
         title: "Lowkey", 
         artist: "Niki", 
-        src: "songs/NIKI - Lowkey.mp3" 
+        src: "songs/Niki.mp3" 
     },
     { 
         title: "flowers in spring", 
         artist: "Constance Shim", 
-        src: "songs/flowers in spring - Constance Shim.mp3" 
+        src: "songs/Flower.mp3" 
     },
     { 
         title: "Soft spot", 
         artist: "keshi", 
-        src: "songs/Soft spot - keshi.mp3" 
+        src: "songs/Soft.mp3" 
     },
     { 
         title: "her", 
         artist: "JVKE", 
-        src: "songs/her - JVKE.mp3" 
+        src: "songs/Her.mp3" 
     },
     { 
         title: "Once then we'll be free", 
         artist: "Wisp", 
-        src: "songs/wisp - Once then we be free.mp3" 
+        src: "songs/Wisp.mp3" 
     }
     // Add all your songs here!
 ];
