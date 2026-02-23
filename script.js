@@ -4,9 +4,9 @@
  */
 const playlist = [
     { 
-        title: "Lowkey", 
-        artist: "Niki", 
-        src: "songs/Niki.mp3" 
+        title: "Emulation", 
+        artist: "Stargaze Shelter", 
+        src: "songs/Emulation.mp3" 
     },
     { 
         title: "flowers in spring", 
